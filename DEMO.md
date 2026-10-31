@@ -1,6 +1,6 @@
 # PremedFix demo walkthrough
 
-A scripted demonstration of the end-to-end permit resolution flow and the six scenarios in the product brief. Everything shown is backed by persisted data and the same services the automated tests exercise. All people, companies, addresses, and municipalities are fictional; no message is ever actually sent.
+A scripted demonstration of the end-to-end permit resolution flow and seven scenarios: A–F from the product brief, plus G, reported finals. Everything shown is backed by persisted data and the same services the automated tests exercise. All people, companies, addresses, and municipalities are fictional; no message is ever actually sent.
 
 **Time:** ~15 minutes for the main flow, ~10 more for the scenarios.
 

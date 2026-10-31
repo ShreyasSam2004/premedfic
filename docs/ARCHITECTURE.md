@@ -102,8 +102,8 @@ Services read time through `now()` (`src/server/util.ts`). The seed replays mont
 
 | Suite | Scope |
 |---|---|
-| `tests/unit` (95) | normalization, mapping, dedupe, triage rules, state machine, permissions, sessions, upload validation, extraction, injection screening, acceptance gate, cross-checks, checklist, rule-set validation, template tone |
-| `tests/integration` (24) | import → cases (idempotency, reconciliation, provenance); outreach → portal → evidence → review → determination → confirmation → dashboard; audit append-only and hash chain; packet content; tenant and homeowner isolation; electrical escalation guards |
+| `tests/unit` (126) | normalization, mapping, dedupe, triage rules, state machine, permissions, sessions, upload validation, extraction, injection screening, acceptance gate, cross-checks, checklist, rule-set validation, template tone, rule-change impact, finalization checks, Austin category mapping |
+| `tests/integration` (40) | import → cases (idempotency, reconciliation, provenance); outreach → portal → evidence → review → determination → confirmation → dashboard; rule editing, preview, and activation; reported finals → verification → already resolved; database storage; audit append-only and hash chain; packet content; tenant and homeowner isolation; electrical escalation guards |
 | `tests/eval` (6) | evaluation harness gates |
 | `e2e` (2, Playwright) | the full journey through the UI with four identities; cross-tenant access |
 

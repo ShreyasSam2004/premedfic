@@ -1,0 +1,27 @@
+node_modules/
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local data: embedded database, uploaded files, downloaded datasets
+.data/
+
+# Secrets and local environment (Vercel CLI writes .env.local and .vercel/)
+.env
+.env.*
+!.env.example
+.vercel
+
+# Demo video: keep the plan, caption, poster, and the scripts that build it;
+# not the 52 MB render or the captured frames
+brag-output/brag.mp4
+brag-output/work/*
+!brag-output/work/capture.mjs
+!brag-output/work/render.mjs
+!brag-output/work/audio.py
+!brag-output/work/composition/
+brag-output/work/composition/data.js

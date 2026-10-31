@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PremedFix demo</title>
+<style>
+  @font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; }
+  :root {
+    --navy: #0a0f24; --navy-2: #10183a; --brand: #2f4fd8; --brand-soft: #a9b8f5; --ink: #101828;
+    --canvas: #f6f7f9; --text: #f4f6fb; --muted: #a7b0c8; --faint: #6f7a96; --line: rgba(169, 184, 245, 0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--navy); }
+  body { font-family: "Geist", system-ui, sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+  #stage { position: absolute; inset: 0; overflow: hidden; }
+  #bg { position: absolute; inset: 0; background:
+      radial-gradient(900px 620px at 1180px 560px, rgba(47, 79, 216, 0.34), transparent 70%),
+      radial-gradient(700px 500px at 180px 140px, rgba(169, 184, 245, 0.08), transparent 70%),
+      linear-gradient(160deg, #0a0f24 0%, #0d1430 55%, #0a0f24 100%); }
+  .abs { position: absolute; }
+  .tab { font-variant-numeric: tabular-nums; }
+
+  /* Hook */
+  #hook { left: 0; right: 0; top: 330px; text-align: center; }
+  #hook .num { font-size: 210px; font-weight: 640; letter-spacing: -0.045em; line-height: 1; }
+  #hook .line { margin-top: 34px; font-size: 46px; font-weight: 500; color: var(--text); letter-spacing: -0.01em; }
+  #hook .src { margin-top: 26px; font-size: 20px; color: var(--faint); letter-spacing: 0.01em; }
+
+  /* Reveal + loop */
+  #brand { left: 0; right: 0; top: 0; height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  #brand .row { display: flex; align-items: center; gap: 26px; }
+  #brand .name { font-size: 92px; font-weight: 620; letter-spacing: -0.035em; }
+  #brand .tag { margin-top: 30px; font-size: 34px; color: var(--muted); font-weight: 450; }
+  #loop { left: 0; right: 0; top: 520px; display: flex; justify-content: center; align-items: center; }
+  .chipstep { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 190px; }
+  .chipstep .n { width: 54px; height: 54px; border-radius: 50%; border: 1.5px solid var(--brand-soft); color: var(--brand-soft); display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 600; background: rgba(47, 79, 216, 0.18); }
+  .chipstep .l { font-size: 26px; font-weight: 560; letter-spacing: -0.01em; }
+  .conn { width: 64px; height: 1.5px; background: var(--line); margin-top: -40px; }
+  #loopnote { left: 0; right: 0; top: 700px; text-align: center; font-size: 30px; color: var(--muted); }
+
+  /* Left column */
+  .cap { left: 76px; width: 360px; top: 0; height: 1080px; display: flex; flex-direction: column; justify-content: center; }
+  .cap .prog { display: flex; gap: 6px; margin-bottom: 26px; }
+  .cap .prog i { width: 34px; height: 4px; border-radius: 2px; background: rgba(169, 184, 245, 0.2); }
+  .cap .prog i.on { background: var(--brand-soft); }
+  .cap .chip { display: flex; align-items: baseline; gap: 12px; font-size: 16px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-soft); }
+  .cap .chip b { font-size: 16px; color: var(--muted); font-weight: 600; }
+  .cap .title { margin-top: 18px; font-size: 46px; line-height: 1.1; font-weight: 620; letter-spacing: -0.025em; text-wrap: balance; }
+  .cap .body { margin-top: 22px; font-size: 22px; line-height: 1.5; color: var(--muted); }
+  .cap .list { list-style: none; display: flex; flex-direction: column; gap: 16px; font-size: 20px; line-height: 1.4; }
+  .cap .list li { padding-left: 16px; border-left: 2px solid rgba(169, 184, 245, 0.2); }
+  .cap .list li.on { color: var(--text); border-left-color: var(--brand-soft); }
+
+  /* App window */
+  #win { left: 470px; top: 128px; width: 1380px; height: 816px; border-radius: 14px; overflow: hidden; background: var(--canvas);
+         box-shadow: 0 40px 120px rgba(2, 6, 23, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08); }
+  #win .chrome { height: 40px; background: #ffffff; border-bottom: 1px solid #e4e7ec; display: flex; align-items: center; padding: 0 16px; gap: 8px; position: relative; }
+  #win .chrome i { width: 12px; height: 12px; border-radius: 50%; background: #d0d5dd; }
+  #win .url { position: absolute; left: 50%; top: 8px; transform: translateX(-50%); height: 24px; min-width: 420px; padding: 0 16px; border-radius: 6px; background: #f2f4f7;
+              color: #475467; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  #win .url::before { content: ""; width: 9px; height: 9px; border-radius: 2px; border: 1.5px solid #98a2b3; }
+  #screen { position: absolute; left: 0; top: 40px; width: 1440px; height: 810px; transform-origin: 0 0; transform: scale(0.958333); overflow: hidden; background: var(--canvas); }
+  #cam, #pcam { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  #cam { width: 1440px; height: 810px; }
+  .shot { position: absolute; left: 0; top: 0; width: 1440px; height: 810px; overflow: hidden; background: var(--canvas); }
+  .shot img.main { position: absolute; left: 0; top: 0; width: 1440px; }
+  .shot img.side { position: absolute; left: 0; top: 0; width: 236px; height: 810px; }
+  #cursor { position: absolute; left: 0; top: 0; width: 26px; height: 30px; transform-origin: 3px 3px; filter: drop-shadow(0 2px 3px rgba(16, 24, 40, 0.35)); }
+  .ripple { position: absolute; border-radius: 50%; border: 2px solid rgba(47, 79, 216, 0.8); background: rgba(47, 79, 216, 0.14); }
+
+  /* Phone */
+  #phone { left: 952px; top: 112px; width: 416px; height: 856px; border-radius: 58px; background: #0b0d14; padding: 13px;
+           box-shadow: 0 40px 120px rgba(2, 6, 23, 0.6), 0 0 0 1.5px rgba(255, 255, 255, 0.12); }
+  #pwrap { position: relative; width: 390px; height: 830px; border-radius: 46px; overflow: hidden; background: #fff; }
+  #pscreen { position: absolute; left: 0; top: 0; width: 390px; height: 844px; transform-origin: 0 0; transform: scale(0.98341); }
+  #pcam { width: 390px; height: 844px; }
+  .pshot { position: absolute; left: 0; top: 0; width: 390px; height: 844px; overflow: hidden; background: #fff; }
+  .pshot img { position: absolute; left: 0; top: 0; width: 390px; }
+  #notch { position: absolute; left: 50%; top: 10px; width: 112px; height: 30px; border-radius: 16px; background: #0b0d14; transform: translateX(-50%); z-index: 5; }
+  .tap { position: absolute; border-radius: 50%; background: rgba(47, 79, 216, 0.28); border: 2px solid rgba(47, 79, 216, 0.6); }
+
+  /* Austin column */
+  #aus { left: 76px; width: 360px; top: 0; height: 1080px; display: flex; flex-direction: column; justify-content: center; }
+  #aus .eyebrow { font-size: 15px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-soft); }
+  #aus .title { margin-top: 16px; font-size: 42px; line-height: 1.1; font-weight: 620; letter-spacing: -0.025em; }
+  #aus .stat { margin-top: 30px; padding-left: 18px; border-left: 2px solid var(--brand-soft); }
+  #aus .stat .v { font-size: 56px; line-height: 1; font-weight: 640; letter-spacing: -0.03em; }
+  #aus .stat .k { margin-top: 10px; font-size: 19px; line-height: 1.45; color: var(--muted); }
+  #aus .foot { margin-top: 30px; font-size: 17px; color: var(--faint); }
+
+  /* Outro */
+  #outro { left: 0; right: 0; top: 0; height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  #outro .l1 { font-size: 72px; font-weight: 630; letter-spacing: -0.035em; }
+  #outro .l2 { margin-top: 30px; font-size: 38px; color: var(--muted); font-weight: 450; }
+  #end { left: 0; right: 0; top: 0; height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  #end .row { display: flex; align-items: center; gap: 24px; }
+  #end .name { font-size: 84px; font-weight: 620; letter-spacing: -0.035em; }
+  #end .tag { margin-top: 26px; font-size: 30px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+
+  <div id="hook" class="abs">
+    <div class="num tab" id="hookNum">0</div>
+    <div class="line" id="hookLine">expired residential permits in Austin, Texas</div>
+    <div class="src" id="hookSrc"></div>
+  </div>
+
+  <div id="brand" class="abs">
+    <div class="row" id="brandRow">
+      <svg id="mark" width="112" height="112" viewBox="0 0 28 28"><rect width="28" height="28" rx="7" fill="#2f4fd8"/><path d="M8 9.5h7.25a3.75 3.75 0 0 1 0 7.5H11.5v2.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m15.5 19.25 1.75 1.75 3.5-3.75" fill="none" stroke="#a9b8f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="name">PremedFix</div>
+    </div>
+    <div class="tag" id="brandTag">Resolves expired permit backlogs for building departments.</div>
+  </div>
+  <div id="loop" class="abs"></div>
+  <div id="loopnote" class="abs">A person makes every decision.</div>
+
+  <div id="caps"></div>
+
+  <div id="win" class="abs">
+    <div class="chrome"><i></i><i></i><i></i><div class="url" id="url"></div></div>
+    <div id="screen"><div id="cam"><div id="shots"></div>
+      <svg id="cursor" viewBox="0 0 26 30"><path d="M3 2.5v21.2l5.6-5.2 3.6 8.3 3.9-1.7-3.6-8.1h7.6z" fill="#fff" stroke="#101828" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <div id="ripples"></div>
+    </div></div>
+  </div>
+
+  <div id="phone" class="abs"><div id="pwrap"><div id="notch"></div><div id="pscreen"><div id="pcam"><div id="pshots"></div><div id="taps"></div></div></div></div></div>
+
+  <div id="aus" class="abs">
+    <div class="eyebrow" id="ausEyebrow">Real data · City of Austin, Texas</div>
+    <div class="title" id="ausTitle">We ran it on Austin’s backlog</div>
+    <div class="stat" id="aus1"><div class="v tab" id="aus1v"></div><div class="k" id="aus1k"></div></div>
+    <div class="stat" id="aus2"><div class="v tab" id="aus2v"></div><div class="k" id="aus2k"></div></div>
+    <div class="stat" id="aus3"><div class="v tab" id="aus3v"></div><div class="k" id="aus3k"></div></div>
+    <div class="foot" id="ausFoot">Every number traces to Austin’s open data.</div>
+  </div>
+
+  <div id="outro" class="abs">
+    <div class="l1" id="out1">No AI approves or closes a permit.</div>
+    <div class="l2" id="out2">PremedFix gets each permit to a decision, evidence attached.</div>
+  </div>
+  <div id="end" class="abs">
+    <div class="row" id="endRow">
+      <svg width="104" height="104" viewBox="0 0 28 28"><rect width="28" height="28" rx="7" fill="#2f4fd8"/><path d="M8 9.5h7.25a3.75 3.75 0 0 1 0 7.5H11.5v2.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m15.5 19.25 1.75 1.75 3.5-3.75" fill="none" stroke="#a9b8f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="name">PremedFix</div>
+    </div>
+    <div class="tag" id="endTag">Permit resolution for building departments</div>
+  </div>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

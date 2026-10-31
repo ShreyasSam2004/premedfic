@@ -1,0 +1,10 @@
+Permit Number,Address,Parcel ID,Type,Scope of Work,Issue Date,Expiration Date,Status,Contractor Name,Contractor License,Owner,Owner Email,Owner Phone,Record ID
+LKM-BLD-2019-04127,418 Magnolia Ave,31-22-05-0418-001,Re-Roof,"Tear off and replace architectural shingles, replace drip edge",08/12/2019,02/08/2020,Expired - No Final,Sunshine Roofing LLC,CCC1331234,Dana Whitfield,dana.whitfield@example.com,(555) 010-4127,TYL-551204
+LKM-BLD-2020-00918,2207 Willow Bend Way,31-22-08-2207-004,Window Replacement,Replace 6 windows and front door,03/03/2020,08/30/2020,Expired,Clearview Window & Door Co.,CGC1517220,Hana Okafor,hana.okafor@example.com,,TYL-551871
+LKM-PLM-2021-00207,35 Elm St,31-22-01-0035-010,Water Heater,Replace 50 gal electric water heater,01/19/2021,07/18/2021,Expired,Lakemont Plumbing & Drain Inc.,CFC1426770,Victor Abbott,,555-010-3305,TYL-552090
+LKM-ELE-2020-00644,910 Lakeview Dr,31-22-04-0910-002,Electrical Service,Service change 150A to 200A,06/02/2020,11/29/2020,Expired,Brightline Electric Inc.,EC13004471,Rosa Castillo,rosa.castillo@example.com,,TYL-552401
+LKM-BLD-2021-01733,1188 Maple Ave,,Fence,Install 6 ft vinyl fence,2021-09-14,2022-03-13,EXPIRED,,,,,,TYL-553017
+LKM-BLD-2022-00402,64 Cedar Ln,31-22-02-0064-001,Roofing,"Re-roof, replace sheathing as needed",2022-02-07,2022-08-06,Final,Peak Shingle Co.,CCC1330187,Wren Iverson,wren.iverson@example.com,,TYL-553388
+LKM-BLD-2026-00811,500 Harbor View Dr,31-22-09-0500-003,Re-Roof,"Re-roof, metal panels",2026-06-01,2026-11-28,Issued,Sunshine Roofing LLC,CCC1331234,Omar Farrell,omar.farrell@example.com,,TYL-560012
+LKM-BLD-2019-04127,418 MAGNOLIA AVENUE,31-22-05-0418-001,Re-Roof,Tear off and replace architectural shingles,8/12/2019,2/8/2020,Expired,Sunshine Roofing LLC,CCC1331234,Dana Whitfield,dana.whitfield@example.com,,TYL-551204
+,77 Unknown Rd,,Roofing,Re-roof,2020-01-01,2020-06-30,Expired,,,,,,TYL-??

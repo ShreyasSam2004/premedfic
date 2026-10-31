@@ -1,0 +1,477 @@
+{
+  "dataset": {
+    "id": "3syk-w9eu",
+    "name": "Issued Construction Permits",
+    "publisher": "City of Austin",
+    "page": "https://data.austintexas.gov/Building-and-Development/Issued-Construction-Permits/3syk-w9eu",
+    "api": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+    "filter": "status_current in('Expired','Expired - License') AND permit_class_mapped='Residential'",
+    "fetchedAt": "2026-10-30T20:24:38.570Z",
+    "asOf": "2026-10-30"
+  },
+  "ruleSet": "PremedFix default rule set (same configuration as the Lakemont demo). Not Austin policy; unverified for Austin.",
+  "engine": "triage-engine/1.0.0",
+  "totals": {
+    "expiredResidential": 127814,
+    "normalized": 127814,
+    "rejected": {},
+    "withParcelId": 123987,
+    "withParcelIdPct": 97
+  },
+  "headline": {
+    "remoteEligible": 11885,
+    "remoteEligiblePct": 9.3,
+    "definition": "Classified EVIDENCE_COLLECTION: owner submits documents, staff review, an authorized official decides. The rules require no specialist and no site inspection; the official may still require one.",
+    "conservativeFloor": 6000,
+    "conservativeFloorPct": 4.7,
+    "conservativeFloorNote": "Excludes water-heater replacements whose description does not say electric. Austin's data does not record fuel type, and gas-fired units warrant more caution.",
+    "waterHeaters": {
+      "fuelNotStated": 5885,
+      "tankless": 572
+    }
+  },
+  "classification": {
+    "STAFF_REVIEW": {
+      "count": 70543,
+      "pct": 55.2
+    },
+    "SPECIALIST_REVIEW": {
+      "count": 45240,
+      "pct": 35.4
+    },
+    "EVIDENCE_COLLECTION": {
+      "count": 11885,
+      "pct": 9.3
+    },
+    "DATA_RECONCILIATION": {
+      "count": 113,
+      "pct": 0.1
+    },
+    "MONITOR_ACTIVE": {
+      "count": 33,
+      "pct": 0
+    }
+  },
+  "remoteEligibleByCategory": {
+    "Water heater replacement": 5990,
+    "Window replacement": 4474,
+    "Roof replacement": 1349,
+    "Fence installation": 72
+  },
+  "remoteEligibleByIssueYear": {
+    "2010-2019": 5521,
+    "2020 or later": 4256,
+    "before 2000": 1215,
+    "2000-2009": 893
+  },
+  "allByIssueYear": {
+    "before 2000": 38054,
+    "2010-2019": 37908,
+    "2020 or later": 29664,
+    "2000-2009": 22188
+  },
+  "byIssueYear": [
+    {
+      "year": 1978,
+      "expired": 18,
+      "remoteEligible": 0
+    },
+    {
+      "year": 1979,
+      "expired": 125,
+      "remoteEligible": 0
+    },
+    {
+      "year": 1980,
+      "expired": 1023,
+      "remoteEligible": 7
+    },
+    {
+      "year": 1981,
+      "expired": 1824,
+      "remoteEligible": 6
+    },
+    {
+      "year": 1982,
+      "expired": 2139,
+      "remoteEligible": 12
+    },
+    {
+      "year": 1983,
+      "expired": 2365,
+      "remoteEligible": 30
+    },
+    {
+      "year": 1984,
+      "expired": 2935,
+      "remoteEligible": 119
+    },
+    {
+      "year": 1985,
+      "expired": 4605,
+      "remoteEligible": 222
+    },
+    {
+      "year": 1986,
+      "expired": 3047,
+      "remoteEligible": 292
+    },
+    {
+      "year": 1987,
+      "expired": 2828,
+      "remoteEligible": 228
+    },
+    {
+      "year": 1988,
+      "expired": 2921,
+      "remoteEligible": 35
+    },
+    {
+      "year": 1989,
+      "expired": 1888,
+      "remoteEligible": 48
+    },
+    {
+      "year": 1990,
+      "expired": 1341,
+      "remoteEligible": 116
+    },
+    {
+      "year": 1991,
+      "expired": 1127,
+      "remoteEligible": 26
+    },
+    {
+      "year": 1992,
+      "expired": 1184,
+      "remoteEligible": 21
+    },
+    {
+      "year": 1993,
+      "expired": 1166,
+      "remoteEligible": 13
+    },
+    {
+      "year": 1994,
+      "expired": 1273,
+      "remoteEligible": 9
+    },
+    {
+      "year": 1995,
+      "expired": 1284,
+      "remoteEligible": 8
+    },
+    {
+      "year": 1996,
+      "expired": 1370,
+      "remoteEligible": 5
+    },
+    {
+      "year": 1997,
+      "expired": 1158,
+      "remoteEligible": 12
+    },
+    {
+      "year": 1998,
+      "expired": 1122,
+      "remoteEligible": 1
+    },
+    {
+      "year": 1999,
+      "expired": 1311,
+      "remoteEligible": 5
+    },
+    {
+      "year": 2000,
+      "expired": 1457,
+      "remoteEligible": 2
+    },
+    {
+      "year": 2001,
+      "expired": 1587,
+      "remoteEligible": 3
+    },
+    {
+      "year": 2002,
+      "expired": 1790,
+      "remoteEligible": 16
+    },
+    {
+      "year": 2003,
+      "expired": 2160,
+      "remoteEligible": 12
+    },
+    {
+      "year": 2004,
+      "expired": 2205,
+      "remoteEligible": 26
+    },
+    {
+      "year": 2005,
+      "expired": 1931,
+      "remoteEligible": 59
+    },
+    {
+      "year": 2006,
+      "expired": 2907,
+      "remoteEligible": 68
+    },
+    {
+      "year": 2007,
+      "expired": 2875,
+      "remoteEligible": 157
+    },
+    {
+      "year": 2008,
+      "expired": 2598,
+      "remoteEligible": 171
+    },
+    {
+      "year": 2009,
+      "expired": 2678,
+      "remoteEligible": 379
+    },
+    {
+      "year": 2010,
+      "expired": 3232,
+      "remoteEligible": 471
+    },
+    {
+      "year": 2011,
+      "expired": 3065,
+      "remoteEligible": 410
+    },
+    {
+      "year": 2012,
+      "expired": 2508,
+      "remoteEligible": 362
+    },
+    {
+      "year": 2013,
+      "expired": 2942,
+      "remoteEligible": 428
+    },
+    {
+      "year": 2014,
+      "expired": 3392,
+      "remoteEligible": 454
+    },
+    {
+      "year": 2015,
+      "expired": 4070,
+      "remoteEligible": 516
+    },
+    {
+      "year": 2016,
+      "expired": 4158,
+      "remoteEligible": 514
+    },
+    {
+      "year": 2017,
+      "expired": 4627,
+      "remoteEligible": 707
+    },
+    {
+      "year": 2018,
+      "expired": 4988,
+      "remoteEligible": 872
+    },
+    {
+      "year": 2019,
+      "expired": 4926,
+      "remoteEligible": 787
+    },
+    {
+      "year": 2020,
+      "expired": 4682,
+      "remoteEligible": 762
+    },
+    {
+      "year": 2021,
+      "expired": 5889,
+      "remoteEligible": 1015
+    },
+    {
+      "year": 2022,
+      "expired": 5509,
+      "remoteEligible": 770
+    },
+    {
+      "year": 2023,
+      "expired": 4788,
+      "remoteEligible": 760
+    },
+    {
+      "year": 2024,
+      "expired": 4311,
+      "remoteEligible": 479
+    },
+    {
+      "year": 2025,
+      "expired": 3457,
+      "remoteEligible": 356
+    },
+    {
+      "year": 2026,
+      "expired": 1028,
+      "remoteEligible": 114
+    }
+  ],
+  "specialistReview": {
+    "electrical — category": 25780,
+    "building — category": 9053,
+    "electrical — category and description": 3010,
+    "structural — category and description": 2491,
+    "gas — category": 2227,
+    "gas — category and description": 2039,
+    "structural — description only": 360,
+    "electrical — description only": 154,
+    "building — category and description": 126
+  },
+  "staffReviewReasons": {
+    "R-RULE-001: Rule coverage and verification": 70543
+  },
+  "largestUnmodeledWorkTypes": {
+    "Mechanical Permit — Change Out": 12689,
+    "Mechanical Permit — Remodel": 10908,
+    "Plumbing Permit — Remodel": 10295,
+    "Building Permit — Remodel": 7535,
+    "Building Permit — New": 7164,
+    "Building Permit — Repair": 5658,
+    "Plumbing Permit — Irrigation": 4797,
+    "Plumbing Permit — Repair": 4140,
+    "Building Permit — Demolition": 3279,
+    "Plumbing Permit — New": 1081,
+    "Mechanical Permit — Repair": 636,
+    "Driveway / Sidewalks — New": 593
+  },
+  "dataReconciliationReasons": {
+    "R-DATA-001: Essential record data": 113
+  },
+  "priority": {
+    "P2": 63843,
+    "P1": 43073,
+    "P3": 16454,
+    "P4": 4444
+  },
+  "derivedCategory": {
+    "Other / unclassified": 49982,
+    "Electrical service": 28831,
+    "HVAC replacement": 13027,
+    "Addition": 9184,
+    "Water heater replacement": 5997,
+    "Window replacement": 4474,
+    "Irrigation system": 4348,
+    "Gas installation": 4266,
+    "Door replacement": 2579,
+    "Structural alteration": 2491,
+    "Roof replacement": 1349,
+    "Plumbing repair": 1214,
+    "Fence installation": 72
+  },
+  "derivationBasis": {
+    "no modeled category": 37499,
+    "electrical permit": 25500,
+    "single-scope hvac replacement": 13027,
+    "work class: addition": 6891,
+    "single-scope water heater replacement": 5997,
+    "single-scope window replacement": 4474,
+    "single-scope irrigation system": 4348,
+    "description: gas installation": 4266,
+    "multi-scope description": 3481,
+    "description: electrical service": 3331,
+    "hvac replacement with work class Remodel": 3265,
+    "single-scope door replacement": 2579,
+    "description: structural alteration": 2491,
+    "description: addition": 2293,
+    "plumbing repair with work class Remodel": 1867,
+    "single-scope roof replacement": 1349,
+    "hvac replacement under PP permit": 1234,
+    "single-scope plumbing repair": 1214,
+    "plumbing repair under BP permit": 745,
+    "irrigation system with work class Remodel": 684,
+    "hvac replacement under BP permit": 205,
+    "window replacement under PP permit": 105,
+    "roof replacement under PP permit": 105,
+    "roof replacement under MP permit": 92,
+    "water heater replacement under BP permit": 89,
+    "plumbing repair with work class New": 88,
+    "single-scope fence installation": 72,
+    "plumbing repair under MP permit": 65,
+    "irrigation system under BP permit": 61,
+    "roof replacement with work class New": 55,
+    "window replacement under MP permit": 52,
+    "fence installation under PP permit": 49,
+    "water heater replacement under MP permit": 39,
+    "hvac replacement with work class unknown": 36,
+    "plumbing repair with work class Cut Over/Tank Abandonment": 27,
+    "door replacement under PP permit": 24,
+    "irrigation system with work class Auxiliary Water": 16,
+    "plumbing repair with work class unknown": 13,
+    "irrigation system with work class unknown": 12,
+    "irrigation system with work class Repair": 10,
+    "door replacement under MP permit": 10,
+    "roof replacement with work class Demolition": 10,
+    "water heater replacement with work class Auxiliary Water": 6,
+    "plumbing repair with work class Auxiliary Water": 5,
+    "water heater replacement with work class New": 4,
+    "window replacement with work class New": 4,
+    "irrigation system under MP permit": 4,
+    "plumbing repair under DS permit": 3,
+    "door replacement with work class New": 3,
+    "roof replacement with work class Life Safety": 3,
+    "heater of unknown fuel": 2,
+    "door replacement under DS permit": 2,
+    "window replacement with work class Demolition": 2,
+    "hvac replacement with work class New": 1,
+    "roof replacement with work class Remodel Mobile Home": 1,
+    "plumbing repair with work class Fireline": 1,
+    "roof replacement under DS permit": 1,
+    "door replacement with work class Life Safety": 1,
+    "window replacement with work class Life Safety": 1
+  },
+  "whatIf": {
+    "likeForLikeHvacChangeOuts": 13026,
+    "remoteEligiblePctIfIncluded": 19.5,
+    "lessCautious": 13026,
+    "note": "Engine run with a draft rule set that adds a standard-concern HVAC rule (the rule editor's impact preview). Single-scope mechanical change-outs only; furnaces, boilers, heaters, gas, and electrical work stay excluded. A policy choice for Austin's building official, not applied."
+  },
+  "legacyRecords": {
+    "completedDate": 41459,
+    "completedDatePre2007": 40802,
+    "statusBulk20070606": 38157,
+    "issuedBefore2007": 52091,
+    "completedDatePct": 32.4,
+    "issuedBefore2007Pct": 40.8
+  },
+  "parentPermitSignal": {
+    "withParent": 53871,
+    "parentFound": 25991,
+    "parentFinal": 4436,
+    "parentFinalPct": 3.5,
+    "parentFinalByClassification": {
+      "STAFF_REVIEW": 3463,
+      "SPECIALIST_REVIEW": 952,
+      "DATA_RECONCILIATION": 21
+    },
+    "note": "Expired permits whose parent permit (masterpermitnum) has status Final. A related-record signal for staff, not used by the triage engine and not proof the child work was inspected."
+  },
+  "repermitSignal": {
+    "finaledRepermitsScanned": 9970,
+    "expiredCitedByFinaledRepermit": 440,
+    "pct": 0.3,
+    "byClassification": {
+      "STAFF_REVIEW": 198,
+      "SPECIALIST_REVIEW": 184,
+      "EVIDENCE_COLLECTION": 58
+    },
+    "note": "Expired permits whose project number is cited in the description of a later permit with status Final that mentions re-permitting or an expired permit. Likely superseded; staff confirm against AMANDA. Not used by the triage engine."
+  },
+  "relatedRecordSignals": {
+    "eitherSignal": 4870,
+    "pct": 3.8
+  },
+  "normalizationWarnings": {
+    "expiresAt: Expiration date precedes issuance date": 6
+  }
+}
